@@ -1,6 +1,7 @@
 const express = require('express')
 const AccountModel = require('./models/account')
 const router = express.Router()
+const { body, validationResult } = require('express-validator');
 
 router.get('/', (req, res, next) =>{
     var username = req.body.username
@@ -16,7 +17,16 @@ router.get('/', (req, res, next) =>{
 
 })
 
-router.post('/', (req, res, next) =>{
+router.post('/',
+[body('username').notEmpty().withMessage('Chua nhap tai khoan'),
+body('password').notEmpty().withMessage('Chua nhap mat khau')], 
+(req, res, next) =>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        const errorMessages = errors.array().map(error => error.msg);
+        return res.status(400).json({ errors: errorMessages });
+    }
+
     var username = req.body.username
     var password = req.body.password
 
