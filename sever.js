@@ -7,6 +7,11 @@ const AccountModel = require('./models/account')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+var danhmuctRouter= require('./routers/danhmuc')
+app.use('/api/danhmuc/', danhmuctRouter)
+
+var sanphamRouter= require('./routers/sanpham')
+app.use('/api/sanpham/', sanphamRouter)
 
 var router = require('./apiRouter')
 
