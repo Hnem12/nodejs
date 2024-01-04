@@ -8,10 +8,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 var router = require('./apiRouter')
-var danhmuctRouter= require('./routers/danhmuc')
+var danhmuctRouter= require('./danhmuc')
 app.use('/api/danhmuc/', danhmuctRouter)
 
-var sanphamRouter= require('./routers/sanpham')
+var sanphamRouter= require('./sanpham')
 app.use('/api/sanpham/', sanphamRouter)
 
 app.use('/api/account', router)
